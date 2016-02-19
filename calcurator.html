@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<script src="js/jquery-1.12.0.js"></script>
+</head>
+<body>
+	<div>
+		<input type="text" id="input">
+		<button id="confirm">계산</button>
+	</div>
+	<div id="output">결과값 출력</div>
+</body>
+	<script>
+		$(document).ready(function(){
+		var $output=$("#output");
+		var $input=$("#input");
+
+		$("#confirm").click(function(){
+			var value=$input.val();
+			var num=value.replace('+',' ').replace('-',' ').replace('/',' ').replace('*',' ').split(' ');
+			var sum=num[0];
+			for (var i = 0; i < num.length-1; i++) {
+				var sybol=value.replace(num[i],' ').replace(num[i+1],' ').split(' ');
+
+				switch(sybol){
+					case '+' :
+						sum=sum+num[i+1];
+					break;
+					case '-' :
+						sum=sum-num[i+1];
+					break;
+					case '/' :
+						sum=parseInt(sum/num[i+1]);
+					break;
+					case '*' :
+						sum=sum*num[i+1];
+					break;
+				}	
+			};
+			$output.html(sum);
+		})
+
+		});
+
+
+	</script>
+</html>
